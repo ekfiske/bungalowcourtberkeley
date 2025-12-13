@@ -14,9 +14,9 @@ map.on('load', function() {
     });
   
     map.addLayer({
-      id: 'bc-points',
+      id: 'bc-points-layer',
       type: 'circle',
-      source: 'points-data',
+      source: 'bc-points',
       paint: {
           'circle-color': '#4264FB',
           'circle-radius': 6,
