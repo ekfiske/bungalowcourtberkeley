@@ -32,6 +32,29 @@ map.on('load', function() {
           'icon-allow-overlap': true
         }
     });
+
+    // Add click event for bc popups
+    map.on('click', 'bc-points-layer', (e) => {
+        // Copy coordinates array
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const properties = e.features[0].properties;
+
+        // Create popup content using the actual data properties
+        const popupContent = `
+            <div>
+                <h3>${properties.address}</h3>
+                <p><strong>Year constructed:</strong> ${properties.date}</p>
+                <p><strong>Parcel land use:</strong> ${properties.land_use}</p>
+                <p><strong>Dwelling type:</strong> ${properties.dwelling_type}</p>
+                <p><strong>Dwelling type notes:</strong> ${properties.dwelling_type_notes}</p>
+            </div>
+        `;
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(popupContent)
+            .addTo(map);
+    });
             
   });
   
