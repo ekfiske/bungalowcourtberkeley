@@ -8,4 +8,21 @@ const map = new mapboxgl.Map({
     });
 
 map.on('load', function() {
+    map.addSource('bc-points', {
+      type: 'geojson',
+      data: './bcb_data/bc_pointsall.geojson'
+    });
+  
+    map.addLayer({
+      id: 'bc-points',
+      type: 'circle',
+      source: 'points-data',
+      paint: {
+          'circle-color': '#4264FB',
+          'circle-radius': 6,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#ffffff'
+        }
+    });
+  
 });
