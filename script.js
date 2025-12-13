@@ -8,6 +8,16 @@ const map = new mapboxgl.Map({
     });
 
 map.on('load', function() {
+  // Load an image from an external URL.
+    map.loadImage(
+      'https://github.com/ekfiske/bungalowcourtberkeley/blob/main/bcb_icons/bcb_icon1.png?raw=true',
+          (error, image) => {
+              if (error) throw error;
+
+              // Add the image to the map style.
+              map.addImage('icon1', image);
+    });
+  
     map.addSource('bc-points', {
       type: 'geojson',
       data: 'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_data/bc_pointsall.geojson'
@@ -15,14 +25,12 @@ map.on('load', function() {
   
     map.addLayer({
       id: 'bc-points-layer',
-      type: 'circle',
+      type: 'symbol',
       source: 'bc-points',
-      paint: {
-          'circle-color': '#4264FB',
-          'circle-radius': 6,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#ffffff'
-        }
+      layout: {
+          'icon-image': 'icon1', // reference the image
+          'icon-size': 0.5
+      }
     });
   
 });
