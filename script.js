@@ -10,7 +10,7 @@ const map = new mapboxgl.Map({
 map.on('load', function() {
     map.addSource('bc-points', {
       type: 'geojson',
-      data: '/bcb_data/bc_pointsall.geojson'
+      data: './bcb_data/bc_pointsall.geojson'
     });
   
     map.addLayer({
