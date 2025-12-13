@@ -30,6 +30,7 @@ map.on('load', function() {
       layout: {
           'icon-image': 'icon1', // reference the image
           'icon-size': 0.5
+          'icon-allow-overlap': true
       }
     });
   
