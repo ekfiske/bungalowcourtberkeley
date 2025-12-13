@@ -28,7 +28,7 @@ map.on('load', function() {
         source: 'bc-points',
         layout: {
           'icon-image': 'icon1', // reference the image
-          'icon-size': 0.5,
+          'icon-size': 0.05,
           'icon-allow-overlap': true
         }
     });
