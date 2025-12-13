@@ -9,29 +9,30 @@ const map = new mapboxgl.Map({
 
 map.on('load', function() {
   // Load an image from an external URL.
-    map.loadImage(
-      'https://github.com/ekfiske/bungalowcourtberkeley/blob/main/bcb_icons/bcb_icon1.png?raw=true',
+  map.loadImage(
+      'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_icons/bcb_icon1.png',
           (error, image) => {
               if (error) throw error;
 
               // Add the image to the map style.
               map.addImage('icon1', image);
-    });
-  
+
     map.addSource('bc-points', {
-      type: 'geojson',
-      data: 'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_data/bc_pointsall.geojson'
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_data/bc_pointsall.geojson'
     });
-  
+
     map.addLayer({
-      id: 'bc-points-layer',
-      type: 'symbol',
-      source: 'bc-points',
-      layout: {
+        id: 'bc-points-layer',
+        type: 'symbol',
+        source: 'bc-points',
+        layout: {
           'icon-image': 'icon1', // reference the image
-          'icon-size': 0.5
+          'icon-size': 0.5,
           'icon-allow-overlap': true
-      }
+        }
     });
+            
+  });
   
 });
