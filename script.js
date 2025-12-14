@@ -12,6 +12,7 @@ const maxDate = 1943;
 function filterBy(date) {
   const filters = ['<=', ['to-number', ['get', "date"]], date];
   map.setFilter('bc-points-layer', filters);
+  map.setFilter('bc-adj-points-layer', filters);
  document.getElementById('year').textContent = date;
 }
 
@@ -24,13 +25,37 @@ map.on('load', function() {
 
               // Add the image to the map style.
               map.addImage('icon1', image);
+            
+ map.loadImage(
+      'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_icons/bcb_icon2.png',
+          (error, image) => {
+              if (error) throw error;
+
+              // Add the image to the map style.
+              map.addImage('icon2', image);
 
     map.addSource('bc-points', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_data/bc_pointsall.geojson'
     });
+            
+    map.addSource('bc-adj-points', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_data/bc_adj_pointsall.geojson'
+    });
 
-    map.addLayer({
+        map.addLayer({
+        id: 'bc-adj-points-layer',
+        type: 'symbol',
+        source: 'bc-adj-points',
+        layout: {
+          'icon-image': 'icon2', // reference the image
+          'icon-size': 0.03,
+          'icon-allow-overlap': true
+        }
+    });
+  
+  map.addLayer({
         id: 'bc-points-layer',
         type: 'symbol',
         source: 'bc-points',
@@ -42,6 +67,9 @@ map.on('load', function() {
     });
             
 filterBy(maxDate);
+
+});
+});
             
  document.getElementById('slider').addEventListener('input', (e) => {
       const date = parseInt(e.target.value, 10);
@@ -64,13 +92,34 @@ filterBy(maxDate);
                 <p><strong>Dwelling type notes:</strong> ${properties.dwelling_type_notes}</p>
             </div>
         `;
-
+  
         new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(popupContent)
             .addTo(map);
     });
-            
-  });
+  
+  map.on('click', 'bc-adj-points-layer', (e) => {
+        // Copy coordinates array
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const properties = e.features[0].properties;
+
+        // Create popup content using the actual data properties
+        const popupContent = `
+            <div>
+                <h3>${properties.address}</h3>
+                <p><strong>Year constructed:</strong> ${properties.date}</p>
+                <p><strong>Parcel land use:</strong> ${properties.land_use}</p>
+                <p><strong>Dwelling type:</strong> ${properties.dwelling_type}</p>
+                <p><strong>Dwelling type notes:</strong> ${properties.dwelling_type_notes}</p>
+                ${properties.more_info ? `<p><a href="${properties.more_info}" target="_blank" style="color:#92bddd">More Information</a></p>` : ''}
+            </div>
+        `;
+    
+            new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(popupContent)
+            .addTo(map);
+    });
   
 });
