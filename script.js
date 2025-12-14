@@ -6,6 +6,14 @@ const map = new mapboxgl.Map({
   center: [-122.272781, 37.875], // starting position [lng, lat]. Note that lat must be set between -90 and 90
   zoom: 12.5 // starting zoom
     });
+const minDate = 1912;
+const maxDate = 1943;
+
+function filterBy(date) {
+  const filters = ['<=', ['to-number', ['get', "date"]], date];
+  map.setFilter('bc-points-layer', filters);
+ document.getElementById('year').textContent = date;
+}
 
 map.on('load', function() {
   // Load an image from an external URL.
@@ -32,6 +40,13 @@ map.on('load', function() {
           'icon-allow-overlap': true
         }
     });
+            
+filterBy(maxDate);
+            
+ document.getElementById('slider').addEventListener('input', (e) => {
+      const date = parseInt(e.target.value, 10);
+      filterBy(date);
+   });
 
     // Add click event for bc popups
     map.on('click', 'bc-points-layer', (e) => {
