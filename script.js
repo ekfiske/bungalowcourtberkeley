@@ -25,6 +25,7 @@ map.on('load', function() {
 
               // Add the image to the map style.
               map.addImage('icon1', image);
+    });
             
  map.loadImage(
       'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_icons/bcb_icon2.png',
@@ -33,6 +34,7 @@ map.on('load', function() {
 
               // Add the image to the map style.
               map.addImage('icon2', image);
+  });
 
     map.addSource('bc-points', {
         type: 'geojson',
@@ -67,9 +69,6 @@ map.on('load', function() {
     });
             
 filterBy(maxDate);
-
-});
-});
             
  document.getElementById('slider').addEventListener('input', (e) => {
       const date = parseInt(e.target.value, 10);
