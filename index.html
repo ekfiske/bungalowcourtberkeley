@@ -7,16 +7,21 @@
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css'>
     <link rel="stylesheet" href="./style.css">
   </head> 
-  <body>
+  <body> 
+    <div id="map"></div>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js'></script>
+    <script src="./script.js"></script>
+
     <div id="controls">
       <label for="slider">Year Built</label><br>
       <input id="slider" type="range" min="1912" max="1943" step="1" value="1943" style="width:200px;">
       <div>Showing: <span id="year">1943</span></div>
     </div>
     
-    <div id="map"></div>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js'></script>
-    <script src="./script.js"></script>
+    <div id="legend">
+      <div><img src="https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/main/bcb_icons/bcb_icon1.png" width="20" style="vertical-align:middle;"> Bungaow Court</div>
+      <div><img src="https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/main/bcb_icons/bcb_icon2.png" width="20" style="vertical-align:middle;"> Adjacent Style</div>
+    </div>
 
     <h1> Bungalow Courts of Berkeley</h1>
     
