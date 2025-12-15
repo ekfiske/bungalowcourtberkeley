@@ -87,11 +87,11 @@ filterBy(maxDate);
             <div>
                 <h3>${properties.address}</h3>
                 ${properties.image ? `<img src="${properties.image}" style="width:100%; border-radius:4px; margin-top:5px;">` : ''}
-            </div>
                 <p><strong>Year constructed:</strong> ${properties.date}</p>
                 <p><strong>Parcel land use:</strong> ${properties.land_use}</p>
                 <p><strong>Dwelling type:</strong> ${properties.dwelling_type}</p>
                 <p><strong>Dwelling type notes:</strong> ${properties.dwelling_type_notes}</p>
+           </div>
         `;
   
         new mapboxgl.Popup()
