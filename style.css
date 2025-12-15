@@ -109,3 +109,11 @@ body {
   color: #4b4f4e;
   z-index: 1000;
 }
+#bc_img_gen{
+  max-width: 220px;
+  z-index: 1000;
+}
+#cite{
+  font-size: 10px;
+  text-align: center;
+}
