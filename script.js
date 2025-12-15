@@ -1,3 +1,4 @@
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWtmaXNrZSIsImEiOiJjbTFpYWE2eXUwYTU4MmxvZHpsMXB0MGFoIn0.PgmkPVfsppBuKfRqLuI66A';
 
 const map = new mapboxgl.Map({
@@ -38,7 +39,7 @@ map.on('load', function() {
 
     map.addSource('bc-points', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_data/bc_pointsall.geojson'
+        data: 'https://raw.githubusercontent.com/ekfiske/bungalowcourtberkeley/refs/heads/main/bcb_data/bcb_pointsall_img.geojson'
     });
             
     map.addSource('bc-adj-points', {
@@ -85,11 +86,12 @@ filterBy(maxDate);
         const popupContent = `
             <div>
                 <h3>${properties.address}</h3>
+                ${properties.image ? `<img src="${properties.image}" style="width:100%; border-radius:4px; margin-top:5px;">` : ''}
+            </div>
                 <p><strong>Year constructed:</strong> ${properties.date}</p>
                 <p><strong>Parcel land use:</strong> ${properties.land_use}</p>
                 <p><strong>Dwelling type:</strong> ${properties.dwelling_type}</p>
                 <p><strong>Dwelling type notes:</strong> ${properties.dwelling_type_notes}</p>
-            </div>
         `;
   
         new mapboxgl.Popup()
