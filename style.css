@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +7,8 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
 }
 h1 {
   position: absolute;
@@ -30,13 +32,9 @@ p {
   color: #4b4f4e;
 }
 h2 {
-  position: absolute;
-  top: 75px;
-  left: 40px;
-  z-index: 1000;
   font-family: Georgia, serif;
-  font-size: 13px;
-  color: #cc3300;
+  font-size: 20px;
+  color: #292828;
 }
 #controls {
   position:absolute;
@@ -73,7 +71,13 @@ h2 {
   font-weight: bold;
 }
 .mapboxgl-popup-content {
-  background-color: #faf6eb !important; 
+  background-color: #faf6eb !important;
+  max-height: 200px;
+  overflow: auto; 
+}
+.mapboxgl-popup-tip {
+    border-bottom-color: #faf6eb !important;
+  border-top-color: #faf6eb !important;
 }
 #legend {
   position: absolute;
@@ -85,4 +89,23 @@ h2 {
     font-family: Georgia, serif;
     font-size: 14px;
     z-index: 1000;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+#sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #faf6eb;
+  padding: 20px;
+  overflow-y: auto;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  color: #4b4f4e;
+  z-index: 1000;
 }
